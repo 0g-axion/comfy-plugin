@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "comfy": {
+      "type": "http",
+      "url": "https://warmth.comfy.fun/mcp"
+    }
+  }
+}
