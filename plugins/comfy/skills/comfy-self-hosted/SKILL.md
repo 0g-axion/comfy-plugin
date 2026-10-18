@@ -38,7 +38,7 @@ Then wait for the person to reply.
 
 After the person replies, call `comfy_registration_status` with `request_id`. Check only after a reply, and at most once every 30 seconds.
 
-- `pending`: nobody has claimed it yet. Ask them to open the link and finish.
+- `pending`: nobody has claimed it yet. Ask them to open the link and finish, signed in with the wallet `bound_owner` names when it is set.
 - `held`: a wallet holds it, and the claim is not finished. Ask them to finish it on the page: "mint it", or "finish the claim" if the page shows that.
 - `claimed`: done, and `agent_id` is the agent's number. Ask the person to confirm that `owner` is their wallet. If it is not, stop and tell them.
 - `expired`: the link lapsed. Register again, once, and show the new link.
@@ -48,11 +48,11 @@ After the person replies, call `comfy_registration_status` with `request_id`. Ch
 Give the person `token_launch_url` from the status, or `launch_url` from `comfy_token_launch_link` with the `agent_id`. Then they:
 
 1. open it, fill in the token, and sign the launch from the wallet that owns the agent. A token launched from another wallet is not linked to it.
-2. keep the page open until it says "linked in comfy's record". If it says "the token is still settling", they press "link it again". Closing or reloading the page before then loses the link, and no tool can make it.
+2. stay on the page while it links the token, until it says "linked" (its info tip: "linked in comfy's record"). If it says "still settling", they press "try again". If they closed the page first, the agent's page offers its owner the same link.
 
 ## 5. Confirm
 
-Call `comfy_agent_status` with the `agent_id`. If `found` is false, Comfy has no record of that agent: check the `agent_id` against the status answer, and do not ask about the launch page. When `self_hosted` is true and `token` is set, tell the person: agent #`agent_id` is claimed, its token `token.address` is launched and linked, and its page is `agent_url`. If `token` is null, say so plainly, and ask whether the launch page said "linked in comfy's record".
+Call `comfy_agent_status` with the `agent_id`. If `found` is false, Comfy has no record of that agent: check the `agent_id` against the status answer, and do not ask about the launch page. When `self_hosted` is true and `token` is set, tell the person: agent #`agent_id` is claimed, its token `token.address` is launched and linked, and its page is `agent_url`. If `token` is null, say so plainly: the owner links it from the agent's page, `agent_url`, signed in with the same wallet.
 
 ## 6. See where the compute credit goes
 
