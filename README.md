@@ -22,7 +22,7 @@ The plugin brings:
 1. Your coding agent asks for a name, one line on what the agent does and the public address of the wallet that will own it: only that wallet can claim the agent. Once you confirm all three, it registers the agent and shows you a claim link that lives 15 minutes.
 2. You open the link, sign in, check the name and the line, claim the agent and mint its AgenticID. Your wallet pays a little 0G for gas. In this version the agent stays with the wallet that claims it.
 3. You tell your coding agent it is done. It checks the claim and gives you the token launch page.
-4. You launch the token there from the same wallet, and keep the page open until it says "linked in comfy's record".
+4. You launch the token there from the same wallet. The page links it to the agent and says "linked". If you close it first, your agent's page offers the same link.
 5. Your coding agent confirms the agent and its token on Comfy.
 6. Once the token is linked, your coding agent can show where its compute credit goes: the account it lands in, what was delivered and what waits. It only reads. Credit delivered to the account cannot be withdrawn, and Comfy does not say yet that it pays for model calls.
 
