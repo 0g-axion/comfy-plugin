@@ -1,7 +1,7 @@
 {
   "name": "comfy",
   "description": "List a self-hosted agent on Comfy (0G) and launch its token from Claude Code. Your coding agent registers it; you claim it, mint it and launch its token in your own browser.",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "author": {
     "name": "0g-axion",
     "url": "https://www.comfy.fun"

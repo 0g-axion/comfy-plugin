@@ -65,7 +65,7 @@ Once a token is linked, call `comfy_compute_account` with the `agent_id`. It rea
 
 Tell the person `account`, and whether it is the wallet that launched the token or a `dedicated` account. `delivered_wei` is all that was ever delivered, not a balance, and neither `vault_wei` nor `router_wei` is what 0G's Router will spend. If `creator_is_owner` is false, the credit is not the agent's current owner's: say so. Never quote the share as a rate.
 
-This version only reads. Comfy does not say yet that this credit pays for model calls, so give no steps to spend it, make a key or sign in anywhere. Never take a key, a seed phrase or a session in chat.
+This version only reads. The credit pays for the agent's model calls through a capped key the person makes in their own terminal with `comfy compute key mint`. Never make it for them. Comfy never holds the key, and the account must bill in 0G. Never take a key, a seed phrase or a session in chat.
 
 ## When a tool refuses
 

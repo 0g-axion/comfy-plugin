@@ -24,7 +24,7 @@ The plugin brings:
 3. You tell your coding agent it is done. It checks the claim and gives you the token launch page.
 4. You launch the token there from the same wallet. The page links it to the agent and says "linked". If you close it first, your agent's page offers the same link.
 5. Your coding agent confirms the agent and its token on Comfy.
-6. Once the token is linked, your coding agent can show where its compute credit goes: the account it lands in, what was delivered and what waits. It only reads. Credit delivered to the account cannot be withdrawn, and Comfy does not say yet that it pays for model calls.
+6. Once the token is linked, your coding agent shows where the token's compute credit lands, what was delivered and what waits. It only reads. Credit delivered to the account cannot be withdrawn. It pays for your agent's model calls through a capped key you make in your own terminal with `comfy compute key mint`. Comfy never holds the key, and the account must bill in 0G.
 
 ## What it will not do
 
