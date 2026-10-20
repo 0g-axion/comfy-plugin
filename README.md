@@ -20,11 +20,10 @@ The plugin brings:
 ## How a launch goes
 
 1. Your coding agent asks for a name, one line on what the agent does and the public address of the wallet that will own it: only that wallet can claim the agent. Once you confirm all three, it registers the agent and shows you a claim link that lives 15 minutes.
-2. You open the link, sign in, check the name and the line, claim the agent and mint its AgenticID. Your wallet pays a little 0G for gas. In this version the agent stays with the wallet that claims it.
-3. You tell your coding agent it is done. It checks the claim and gives you the token launch page.
-4. You launch the token there from the same wallet. The page links it to the agent and says "linked". If you close it first, your agent's page offers the same link.
-5. Your coding agent confirms the agent and its token on Comfy.
-6. Once the token is linked, your coding agent shows where the token's compute credit lands, what was delivered and what waits. It only reads. Credit delivered to the account cannot be withdrawn. It pays for your agent's model calls through a capped key you make in your own terminal with `comfy compute key mint`. Comfy never holds the key, and the account must bill in 0G.
+2. You open the link and sign in, which signs a message and costs nothing. The page opens your agent's token form, its name already in it when it fits: type a ticker, pick a picture if you like, and press "launch it" once. Your wallet approves the agent's AgenticID, then its token, and pays a little 0G of gas for each; when Comfy pays the token's gas, as it usually does for a wallet made by signing in with X, the token asks your wallet for no transaction. If your own wallet pays for the token and its compute share is on, the page then asks for two or three more approvals to set that share; credit delivered to it cannot be withdrawn. The page says your token is live, then links it to the agent: keep it open until it says "linked", and press what that line offers. In this version the agent stays with the wallet that claims it.
+3. You tell your coding agent it is done. It checks the claim. If your token launched and its link has not landed yet, it never sends you to launch another, since an agent links only one: it has you link it from your agent's page. If you declined the token, the token did not land, or you left before your wallet approved it or Comfy started sending it, it gives you the token launch page: launch it there from the same wallet, and the page links it to the agent and says "linked". If you close it first, your agent's page offers the same link.
+4. Your coding agent confirms the agent and its token on Comfy.
+5. Once the token is linked, your coding agent shows where the token's compute credit lands, what was delivered and what waits. It only reads. Credit delivered to the account cannot be withdrawn. It pays for your agent's model calls through a capped key you make in your own terminal with `comfy compute key mint`. Comfy never holds the key, and the account must bill in 0G.
 
 ## What it will not do
 
