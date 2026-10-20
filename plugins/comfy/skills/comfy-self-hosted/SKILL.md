@@ -22,15 +22,16 @@ Never ask for a private key, a seed phrase, a password, a session or a cookie, a
 
 Read back the name, the line and the full owner address, or say there is none. Call `comfy_register_agent` once, only after the person confirms what you read back. Register the same agent again only if its claim link expired.
 
-## 2. Claim, in the person's browser
+## 2. Claim and launch, in the person's browser
 
 Show `claim_url` exactly as returned, the part after `?` included, on a line of its own, and `claim_code` beside it, so they can check it in the address bar. The link lapses at `expires_at`, 15 minutes after it was made. Then tell them what the page asks:
 
-1. "sign in to claim it". The wallet they sign in with owns the agent. If you sent an owner, it must be that wallet.
-2. Check "name" and "what it does".
-3. "claim it". This holds the agent for their wallet and costs nothing.
-4. "mint it", then approve the mint in their wallet. It mints the agent's AgenticID from their wallet, which pays a little 0G for gas.
-5. The page says "it is yours now" and "tell your coding agent you are done". If it shows a `comfy agent register --complete` command instead, they skip it and tell you all the same.
+1. "sign in to claim it", if they are signed out. The wallet they sign in with owns the agent. If you sent an owner, it must be that wallet.
+2. The page opens the agent's token form, its name already in it. They check the name, type a ticker, and pick a picture if they want one.
+3. "launch it", once. Under it the page says "your wallet signs the id, then the token": first "approve the mint in your wallet", which mints the agent's AgenticID, then "approve the token in your wallet", which launches its token. Their wallet pays a little 0G for gas.
+4. The page says the token is live, and "tell your coding agent you are done".
+
+If they decline the token's signature, the agent is minted and its token is not: the page says "you declined the token in your wallet" and "the id is minted", and its next "launch it" asks only for the token.
 
 Then wait for the person to reply.
 
@@ -39,15 +40,15 @@ Then wait for the person to reply.
 After the person replies, call `comfy_registration_status` with `request_id`. Check only after a reply, and at most once every 30 seconds.
 
 - `pending`: nobody has claimed it yet. Ask them to open the link and finish, signed in with the wallet `bound_owner` names when it is set.
-- `held`: a wallet holds it, and the claim is not finished. Ask them to finish it on the page: "mint it", or "finish the claim" if the page shows that.
-- `claimed`: done, and `agent_id` is the agent's number. Ask the person to confirm that `owner` is their wallet. If it is not, stop and tell them.
+- `held`: a wallet holds it, and the claim is not finished. Ask them to open the link again, signed in with that wallet, and press "launch it", or "finish the claim" if the page shows that.
+- `claimed`: done, and `agent_id` is the agent's number. Ask the person to confirm that `owner` is their wallet. If it is not, stop and tell them. If `token` is set, its token launched with the claim: go to step 5. If `token` is null, go to step 4.
 - `expired`: the link lapsed. Register again, once, and show the new link.
 
-## 4. Launch the token
+## 4. Launch the token, if it did not launch with the claim
 
-Give the person `token_launch_url` from the status, or `launch_url` from `comfy_token_launch_link` with the `agent_id`. Then they:
+Only when the status says `claimed` and `token` is null: they declined the token's signature, or left the page before it. Give the person `token_launch_url` from the status, or `launch_url` from `comfy_token_launch_link` with the `agent_id`. Then they:
 
-1. open it, fill in the token, and sign the launch from the wallet that owns the agent. A token launched from another wallet is not linked to it.
+1. open it, check the token, and press "launch it" from the wallet that owns the agent. Only the token is signed. A token launched from another wallet is not linked to it.
 2. stay on the page while it links the token, until it says "linked" (its info tip: "linked in comfy's record"). If it says "still settling", they press "try again". If they closed the page first, the agent's page offers its owner the same link.
 
 ## 5. Confirm

@@ -20,11 +20,10 @@ The plugin brings:
 ## How a launch goes
 
 1. Your coding agent asks for a name, one line on what the agent does and the public address of the wallet that will own it: only that wallet can claim the agent. Once you confirm all three, it registers the agent and shows you a claim link that lives 15 minutes.
-2. You open the link, sign in, check the name and the line, claim the agent and mint its AgenticID. Your wallet pays a little 0G for gas. In this version the agent stays with the wallet that claims it.
-3. You tell your coding agent it is done. It checks the claim and gives you the token launch page.
-4. You launch the token there from the same wallet. The page links it to the agent and says "linked". If you close it first, your agent's page offers the same link.
-5. Your coding agent confirms the agent and its token on Comfy.
-6. Once the token is linked, your coding agent shows where the token's compute credit lands, what was delivered and what waits. It only reads. Credit delivered to the account cannot be withdrawn. It pays for your agent's model calls through a capped key you make in your own terminal with `comfy compute key mint`. Comfy never holds the key, and the account must bill in 0G.
+2. You open the link and sign in. The page opens your agent's token form, its name already in it: type a ticker, pick a picture if you like, and press "launch it" once. Your wallet signs twice, the agent's AgenticID and then its token, and pays a little 0G for gas. In this version the agent stays with the wallet that claims it.
+3. You tell your coding agent it is done. It checks the claim. If you declined the token or left before it launched, it gives you the token launch page: launch it there from the same wallet, and the page links it to the agent and says "linked". If you close it first, your agent's page offers the same link.
+4. Your coding agent confirms the agent and its token on Comfy.
+5. Once the token is linked, your coding agent shows where the token's compute credit lands, what was delivered and what waits. It only reads. Credit delivered to the account cannot be withdrawn. It pays for your agent's model calls through a capped key you make in your own terminal with `comfy compute key mint`. Comfy never holds the key, and the account must bill in 0G.
 
 ## What it will not do
 
